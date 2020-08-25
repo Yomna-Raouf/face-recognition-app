@@ -9,7 +9,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "react-tilt": "^0.1.4"
+    "react-tilt": "^0.1.4",
+    "react-tsparticles": "^1.17.9"
   },
   "scripts": {
     "start": "react-scripts start",

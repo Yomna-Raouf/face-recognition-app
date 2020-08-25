@@ -24,3 +24,10 @@
     object-fit: contain;
     padding-top: 5px;
 }
+
+@media (max-width: 280px) {
+    .Tilt {
+        height: 120px;
+        width: 120px;
+    }
+}
