@@ -12,6 +12,7 @@ const App = () => {
 
   const [ input, setInput ] = useState('');
   const [ imageUrl, setImageUrl ] = useState('');
+  const [ box, setBox ] =  useState({});
 
 
   const app = new Clarifai.App({
@@ -79,6 +80,23 @@ const App = () => {
     detectRetina: true,
   }
 
+  const calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('inputImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    }
+  }
+
+  const displayBoxAroundFaces = (faceBox) => {
+    setBox(faceBox);
+  }
+
   const onInputChange = (e) => {
     setInput(e.target.value);
   }
@@ -87,24 +105,18 @@ const App = () => {
     e.preventDefault();
     setImageUrl( input );
     app.models.predict( Clarifai.FACE_DETECT_MODEL, input )
-     .then(
-        function(response) {
-          console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-        },
-        function(err) {
-          console.log(err);
-        }
-     );
+     .then( response => displayBoxAroundFaces( calculateFaceLocation(response) ))
+     .catch( err => console.log(err));
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <Particles className="particles" params={ ParticlesOptions } />
-      <Navbar/>
+      <Navbar />
       <Logo />
       <Rank />
       <LinkForm link={ input } onInputChange={ onInputChange } onButtonSubmit={ onButtonSubmit } />
-      <FaceRecognitionBox imageURL={ imageUrl } />
+      <FaceRecognitionBox faceBox= { box } imageURL={ imageUrl } />
     </div>
   );
 }
