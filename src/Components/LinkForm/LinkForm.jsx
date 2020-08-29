@@ -1,7 +1,7 @@
 import React from 'react';
 import './LinkForm.css';
 
-function LinkForm() {
+function LinkForm( {onInputChange, onButtonSubmit, link } ) {
     return (
         <div className="LinkForm">
             <p className="LinkForm__description">
@@ -9,8 +9,8 @@ function LinkForm() {
             </p>
             <div className="LinkForm__formContainer">
                 <form className="LinkForm__form">
-                    <input placeholder="Your Image Link" className="LinkForm__formInput" type="text" />
-                    <button className="LinkForm__formButton">Detect</button>
+                    <input value={ link } placeholder="Your Image Link" className="LinkForm__formInput" type="text" onChange={ onInputChange } />
+                    <button className="LinkForm__formButton" onClick={ onButtonSubmit } >Detect</button>
                 </form>
             </div>
         </div>
