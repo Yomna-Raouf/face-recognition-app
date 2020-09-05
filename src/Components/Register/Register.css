@@ -146,6 +146,12 @@
   transform: scale(0.9);
 }
 
+@media (max-width: 440px) {
+  .Register__container {
+    width: 65%;
+  }
+}
+
 @media (max-width: 280px) {
   .Register__container {
     width: 80%;
