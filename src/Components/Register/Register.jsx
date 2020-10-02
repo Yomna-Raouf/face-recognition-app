@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.css";
 
-function Register({ onRouteChange }) {
+function Register({ onRouteChange, loadUser }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const onNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const onEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onSubmitRegister = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:4000/register", {
+      method: "post",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user) {
+          loadUser(user);
+          onRouteChange("home");
+        }
+      });
+  };
+
   return (
     <div className="Register">
       <div className="Register__container">
@@ -9,12 +45,13 @@ function Register({ onRouteChange }) {
           <fieldset id="sign_up" className="Register__formFieldset">
             <legend>Register</legend>
             <div className="Register__formFieldsetName">
-              <label htmlFor="email-address">Name</label>
+              <label htmlFor="user-name">Name</label>
               <input
                 type="text"
                 name="user-name"
                 id="user-name"
                 placeholder="name"
+                onChange={onNameChange}
               />
             </div>
             <div className="Register__formFieldsetEmail">
@@ -24,6 +61,7 @@ function Register({ onRouteChange }) {
                 name="email-address"
                 id="email-address"
                 placeholder="name@example.com"
+                onChange={onEmailChange}
               />
             </div>
             <div className="Register__formFieldsetPassword">
@@ -33,11 +71,12 @@ function Register({ onRouteChange }) {
                 name="password"
                 id="password"
                 placeholder="Enter your password"
+                onChange={onPasswordChange}
               />
             </div>
           </fieldset>
           <div className="Register__formSignupButton">
-            <button onClick={() => onRouteChange("signIn")} type="submit">
+            <button onClick={(e) => onSubmitRegister(e)} type="submit">
               Sign up
             </button>
           </div>

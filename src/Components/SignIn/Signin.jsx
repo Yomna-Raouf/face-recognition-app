@@ -1,7 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signIn.css";
 
-function Signin({ onRouteChange }) {
+const Signin = ({ onRouteChange, loadUser }) => {
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+
+  const onEmailChange = (e) => {
+    setSignInEmail(e.target.value);
+  };
+
+  const onPasswordChange = (e) => {
+    setSignInPassword(e.target.value);
+  };
+
+  const onSubmitSignIn = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:4000/signin", {
+      method: "post",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        email: signInEmail,
+        password: signInPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.id) {
+          loadUser(user);
+          onRouteChange("home");
+        }
+      });
+  };
+
   return (
     <div className="Signin">
       <div className="Signin__container">
@@ -15,6 +45,7 @@ function Signin({ onRouteChange }) {
                 name="email-address"
                 id="email-address"
                 placeholder="name@example.com"
+                onChange={onEmailChange}
               />
             </div>
             <div className="Signin__formFieldsetPassword">
@@ -24,11 +55,12 @@ function Signin({ onRouteChange }) {
                 name="password"
                 id="password"
                 placeholder="Enter your password"
+                onChange={onPasswordChange}
               />
             </div>
           </fieldset>
           <div className="Signin__formSigninButton">
-            <button onClick={() => onRouteChange("home")} type="submit">
+            <button onClick={onSubmitSignIn} type="submit">
               Sign in
             </button>
           </div>
@@ -40,6 +72,6 @@ function Signin({ onRouteChange }) {
       </div>
     </div>
   );
-}
+};
 
 export default Signin;
