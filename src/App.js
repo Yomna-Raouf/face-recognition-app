@@ -101,7 +101,25 @@ const App = () => {
   };
 
   const calculateFaceLocation = (data) => {
-    const clarifaiFace =
+    const clarifaiFacesData = data.outputs[0].data.regions;
+    const image = document.getElementById("inputImage");
+    const width = Number(image.width);
+    const height = Number(image.height);
+    const clarifaiFaces = clarifaiFacesData.map((clarifaiFace) => {
+      clarifaiFace = {
+        leftCol: clarifaiFace.region_info.bounding_box.left_col * width,
+        topRow: clarifaiFace.region_info.bounding_box.top_row * height,
+        rightCol:
+          width - clarifaiFace.region_info.bounding_box.right_col * width,
+        bottomRow:
+          height - clarifaiFace.region_info.bounding_box.bottom_row * height,
+      };
+      return clarifaiFace;
+    });
+
+    return clarifaiFaces;
+
+    /* const clarifaiFace =
       data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById("inputImage");
     const width = Number(image.width);
@@ -111,7 +129,7 @@ const App = () => {
       topRow: clarifaiFace.top_row * height,
       rightCol: width - clarifaiFace.right_col * width,
       bottomRow: height - clarifaiFace.bottom_row * height,
-    };
+    }; */
   };
 
   const loadUser = (data) => {
