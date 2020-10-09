@@ -1,0 +1,98 @@
+.LinkForm {
+    display: grid;
+    place-items: center;
+}
+
+.LinkForm__description {
+    font-size: 1.5rem;
+    color: #fdfdfd;
+    text-align: center;
+}
+
+.LinkForm__formContainer {
+    display: grid;
+    place-items: center;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .9);
+    border-radius: 4px;
+    padding: 15px 15px;
+    box-shadow: 4px 4px 8px 0 rgba(0,0,0,.2);
+}
+
+.LinkForm__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.LinkForm__formInput {
+    margin-right: 10px;
+    flex: 0.8;
+    height: 28px;
+    border-radius: 4px;
+    outline: none;
+    border: 1.5px solid #2cb5e8;
+    color: #2cb5e8;
+    font-size: 1rem;
+    padding: 2px 5px;
+}
+
+.LinkForm__formInput::placeholder {
+    color: #2cb5e8;
+}
+
+.LinkForm__formButton {
+    flex: 0.2;
+    color: #fff;
+    border: none;
+    height: 35px;
+    background: linear-gradient(89deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    border-radius: 4px;
+    outline: none;
+    font-size: 1rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.LinkForm__formButton:hover {
+    transition: all 0.5s;
+    transform: scale(1.1);
+}
+
+
+@media (max-width: 490px) {
+    .LinkForm__formContainer {
+        width: 85%;
+    }
+
+    .LinkForm__description {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 350px) {
+    .LinkForm__formContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 280px) {
+    .LinkForm__formContainer {
+        width: 80%;
+    }
+
+    .LinkForm__formInput {
+        margin-right: 0;
+        flex: 1;
+    }
+
+    .LinkForm__formButton {
+        margin-top: 1em;
+        margin-left: 0;
+        flex: .5;
+    }
+}

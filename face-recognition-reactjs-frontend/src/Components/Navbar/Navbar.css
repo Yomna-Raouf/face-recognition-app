@@ -1,0 +1,39 @@
+.Navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+  flex: 1;
+}
+
+.Navbar__signout,
+.Navbar__Register {
+  background-color: transparent;
+  border: 1.5px solid #fff;
+  border-radius: 4px;
+  height: 35px;
+  width: 120px;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 600;
+  /*background: linear-gradient(89deg, #9fb8ad 0%, #1fc8db 100%);*/
+}
+
+.Navbar__Register {
+  background-color: #00b6ff;
+  border: none;
+  height: 37.5px;
+}
+
+.Navbar__signout {
+  margin-right: 1rem;
+}
+
+.Navbar__signout:hover,
+.Navbar__Register:hover {
+  transition: all 0.5s;
+  color: #f3f3f3;
+  border-color: #f3f3f3;
+  transform: scale(1.1);
+}

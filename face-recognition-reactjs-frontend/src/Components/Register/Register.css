@@ -1,0 +1,165 @@
+.Register {
+  display: grid;
+  place-items: center;
+  margin-top: 5rem;
+}
+
+.Register__container {
+  width: 45%;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  border: 1px solid #79dae4;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* background: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%); */
+}
+
+.Register__form {
+  max-width: 30em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.Register__formFieldset {
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.Register__formFieldset > legend {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f2fbfe;
+  margin-bottom: 1rem;
+}
+
+.Register__formFieldsetPassword,
+.Register__formFieldsetEmail {
+  margin: 1rem 0;
+}
+
+.Register__formFieldsetEmail > label,
+.Register__formFieldsetPassword > label,
+.Register__formFieldsetName > label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #f2fbfe;
+}
+
+.Register__formFieldsetEmail > input,
+.Register__formFieldsetPassword > input,
+.Register__formFieldsetName > input {
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid #f2fbfe;
+  background-color: transparent;
+  width: 100%;
+  outline: none;
+  color: #f2fbfe;
+  font-size: 1rem;
+}
+
+.Register__formFieldsetEmail > input::placeholder,
+.Register__formFieldsetPassword > input::placeholder,
+.Register__formFieldsetName > input::placeholder {
+  color: #f2fbf2b6;
+}
+
+.Register__formFieldsetPassword + label {
+  padding: 0;
+  margin: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #f2fbfe;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.Register__formRegisterButton {
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+
+.Register__formSignupButton > button,
+.Register__formSigninButton > button {
+  font-weight: bold;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  border: 1px solid #f2fbfe;
+  background-color: transparent;
+  color: #f2fbfe;
+  -moz-osx-font-smoothing: grayscale;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 0.25s ease-out;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.875rem;
+  border-radius: 4px;
+}
+
+.Register__formSigninButton > button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  display: block;
+  padding: 0;
+}
+
+.Register__formSigninButton > button,
+.Register__formSigninButton > p {
+  font-size: 0.875rem;
+  color: #000;
+  display: block;
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
+}
+
+.Register__formSigninButton > button:hover,
+.Register__formSigninButton > p:hover,
+.Register__formSigninButton > button:focus,
+.Register__formSigninButton > button:active {
+  opacity: 0.5;
+  transition: opacity 0.15s ease-in;
+}
+
+.Register__formSignupButton > button:hover,
+.Register__formSignupButton > button:focus {
+  transform: scale(1.05);
+}
+
+.Register__formSignupButton > button:active {
+  transform: scale(0.9);
+}
+
+@media (max-width: 440px) {
+  .Register__container {
+    width: 65%;
+  }
+}
+
+@media (max-width: 280px) {
+  .Register__container {
+    width: 80%;
+    padding: unset;
+    border-radius: unset;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+}
