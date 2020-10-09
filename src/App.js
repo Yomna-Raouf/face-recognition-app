@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Clarifai from "clarifai";
 import "./App.css";
 import Particles from "react-tsparticles";
 import Navbar from "./Components/Navbar/Navbar";
@@ -22,21 +21,6 @@ const App = () => {
     email: "",
     entries: 0,
     joined: "",
-  });
-
-  /*  useEffect(() => {
-    async function fetchData() {
-      const request = await fetch("http://localhost:4000/");
-      const response = await request.json();
-      console.log(response);
-      return request;
-    }
-
-    fetchData();
-  }, []); */
-
-  const app = new Clarifai.App({
-    apiKey: "b2bc6d586d4a49edbbd61018780af9c5",
   });
 
   const ParticlesOptions = {
@@ -118,18 +102,6 @@ const App = () => {
     });
 
     return clarifaiFaces;
-
-    /* const clarifaiFace =
-      data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById("inputImage");
-    const width = Number(image.width);
-    const height = Number(image.height);
-    return {
-      leftCol: clarifaiFace.left_col * width,
-      topRow: clarifaiFace.top_row * height,
-      rightCol: width - clarifaiFace.right_col * width,
-      bottomRow: height - clarifaiFace.bottom_row * height,
-    }; */
   };
 
   const loadUser = (data) => {
@@ -153,12 +125,17 @@ const App = () => {
   const onImageSubmit = (e) => {
     e.preventDefault();
     setImageUrl(input);
-    app.models
-      .predict(Clarifai.FACE_DETECT_MODEL, input)
+    fetch("https://calm-fjord-36797.herokuapp.com/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: input,
+      }),
+    })
+      .then((response) => response.json())
       .then((response) => {
-        displayBoxAroundFaces(calculateFaceLocation(response));
         if (response) {
-          fetch("http://localhost:4000/image", {
+          fetch("https://calm-fjord-36797.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -167,17 +144,33 @@ const App = () => {
           })
             .then((response) => response.json())
             .then((entriesCount) => {
-              console.log(entriesCount);
               setUser({ ...user, entries: entriesCount });
-            });
+            })
+            .catch((err) => alert("unable to work with API"));
         }
+        displayBoxAroundFaces(calculateFaceLocation(response));
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        alert(
+          "Please Enter a valid image url that ends with .png or .jpeg or .jpg or any valid image extension or try again later"
+        )
+      );
   };
 
   const onRouteChange = (route) => {
-    if (route === "signIn") {
+    if (route === "signout") {
+      setInput("");
+      setImageUrl("");
+      setBox({});
+      setRoute("signIn");
       setIsSignedIn(false);
+      setUser({
+        id: "",
+        name: "",
+        email: "",
+        entries: 0,
+        joined: "",
+      });
     } else if (route === "home") {
       setIsSignedIn(true);
     }

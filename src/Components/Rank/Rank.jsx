@@ -6,7 +6,7 @@ function Rank({ name, rank }) {
   return (
     <div className="Rank">
       <div className="Rank__user">
-        <p>{name}, your Rank is </p>
+        <p>{name}, your entry count is </p>
       </div>
       <div className="Rank__score">
         <p>{rank}</p>

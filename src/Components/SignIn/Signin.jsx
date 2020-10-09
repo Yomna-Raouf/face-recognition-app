@@ -4,6 +4,7 @@ import "./signIn.css";
 const Signin = ({ onRouteChange, loadUser }) => {
   const [signInEmail, setSignInEmail] = useState("");
   const [signInPassword, setSignInPassword] = useState("");
+  const [errorSignin, setErrorSignin] = useState("");
 
   const onEmailChange = (e) => {
     setSignInEmail(e.target.value);
@@ -15,7 +16,7 @@ const Signin = ({ onRouteChange, loadUser }) => {
 
   const onSubmitSignIn = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/signin", {
+    fetch("https://calm-fjord-36797.herokuapp.com/signin", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -23,11 +24,15 @@ const Signin = ({ onRouteChange, loadUser }) => {
         password: signInPassword,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) return response.json();
+      })
       .then((user) => {
-        if (user.id) {
+        if (user?.id) {
           loadUser(user);
           onRouteChange("home");
+        } else {
+          setErrorSignin("wrong credintials");
         }
       });
   };
@@ -38,6 +43,7 @@ const Signin = ({ onRouteChange, loadUser }) => {
         <form className="Signin__form">
           <fieldset id="sign_in" className="Signin__formFieldset">
             <legend>Sign In</legend>
+            <p style={{ color: "red" }}>{errorSignin}</p>
             <div className="Signin__formFieldsetEmail">
               <label htmlFor="email-address">Email</label>
               <input

@@ -66,7 +66,7 @@
 
 .Signin__formFieldsetEmail > input::placeholder,
 .Signin__formFieldsetPassword > input::placeholder {
-  color: #f2fbf2;
+  color: #f2fbf2b6;
 }
 
 .Signin__formFieldsetPassword + label {

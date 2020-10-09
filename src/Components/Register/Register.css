@@ -1,7 +1,7 @@
 .Register {
   display: grid;
   place-items: center;
-  margin-top: 9rem;
+  margin-top: 5rem;
 }
 
 .Register__container {
@@ -70,7 +70,7 @@
 .Register__formFieldsetEmail > input::placeholder,
 .Register__formFieldsetPassword > input::placeholder,
 .Register__formFieldsetName > input::placeholder {
-  color: #f2fbf2;
+  color: #f2fbf2b6;
 }
 
 .Register__formFieldsetPassword + label {

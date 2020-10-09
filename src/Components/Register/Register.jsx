@@ -5,6 +5,7 @@ function Register({ onRouteChange, loadUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [errorSignin, setErrorSignin] = useState("");
 
   const onNameChange = (e) => {
     setName(e.target.value);
@@ -20,7 +21,7 @@ function Register({ onRouteChange, loadUser }) {
 
   const onSubmitRegister = (e) => {
     e.preventDefault();
-    fetch("http://localhost:4000/register", {
+    fetch("https://calm-fjord-36797.herokuapp.com/register", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -29,11 +30,15 @@ function Register({ onRouteChange, loadUser }) {
         name: name,
       }),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 200) return response.json();
+      })
       .then((user) => {
-        if (user) {
+        if (user?.id) {
           loadUser(user);
           onRouteChange("home");
+        } else {
+          setErrorSignin("Not Valid Information");
         }
       });
   };
@@ -44,6 +49,7 @@ function Register({ onRouteChange, loadUser }) {
         <form className="Register__form">
           <fieldset id="sign_up" className="Register__formFieldset">
             <legend>Register</legend>
+            <p style={{ color: "red" }}>{errorSignin}</p>
             <div className="Register__formFieldsetName">
               <label htmlFor="user-name">Name</label>
               <input

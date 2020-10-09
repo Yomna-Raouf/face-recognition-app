@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px;
+  flex: 1;
 }
 
 .Navbar__signout,
@@ -20,10 +21,13 @@
 }
 
 .Navbar__Register {
-  margin-right: 1rem;
   background-color: #00b6ff;
   border: none;
   height: 37.5px;
+}
+
+.Navbar__signout {
+  margin-right: 1rem;
 }
 
 .Navbar__signout:hover,

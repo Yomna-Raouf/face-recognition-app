@@ -1,27 +1,36 @@
 .FaceRecognitionBox {
-    display: flex;
-    justify-content: center;
-    margin: auto;
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 
 .FaceRecognitionBox__imageContainer {
-    position: absolute;
-    margin-top: .5rem;
+  position: absolute;
+  margin-top: 0.5rem;
 }
 
 .FaceRecognitionBox__image {
-    width: 500px;
-    object-fit: contain;
+  width: 500px;
+  object-fit: contain;
 }
 
-.FaceRecognitionBox_imageBoundingBox{
-    position: absolute;
-    box-shadow: 0 0 0 3px #149df2 inset;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -ms-flex-pack: center;
-    justify-content: center;
-    cursor: pointer;
+.FaceRecognitionBox_imageBoundingBox {
+  position: absolute;
+  box-shadow: 0 0 0 3px #149df2 inset;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media (max-width: 400px) {
+  .FaceRecognitionBox__imageContainer {
+    width: 100vw;
+  }
+  .FaceRecognitionBox__image {
+    width: 100%;
+  }
 }
