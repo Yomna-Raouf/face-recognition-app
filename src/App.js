@@ -125,7 +125,7 @@ const App = () => {
   const onImageSubmit = (e) => {
     e.preventDefault();
     setImageUrl(input);
-    fetch("https://calm-fjord-36797.herokuapp.com/imageurl", {
+    fetch("https://enigmatic-basin-52522.herokuapp.com/imageurl", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -135,7 +135,7 @@ const App = () => {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch("https://calm-fjord-36797.herokuapp.com/image", {
+          fetch("https://enigmatic-basin-52522.herokuapp.com/image", {
             method: "put",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

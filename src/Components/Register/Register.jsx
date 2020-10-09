@@ -21,7 +21,7 @@ function Register({ onRouteChange, loadUser }) {
 
   const onSubmitRegister = (e) => {
     e.preventDefault();
-    fetch("https://calm-fjord-36797.herokuapp.com/register", {
+    fetch("https://enigmatic-basin-52522.herokuapp.com/register", {
       method: "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
